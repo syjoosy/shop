@@ -1,3 +1,5 @@
+from django import *
+
 money = 500
 bag = []
 shop = [
@@ -7,6 +9,13 @@ shop = [
             ["лимон", 200],
         ]
 warehouse = []
+
+file = open("array.txt" , 'a')
+for line in shop:
+    product = line[0]
+    price = line[1]
+    file.write(product + " : " + str(price) + "\n")
+file.close()
 
 print("Добро пожаловать в наш магазин")
 name = input("Введите своё имя: ")
@@ -20,30 +29,22 @@ if name == "Админ" or name == "админ" or name == "АДМИН" or name 
         if choice_3 == "Добавить" or choice_3 == "ДОБАВИТЬ" or choice_3 == "добавить":
             product = input("Введите название продукта: ")
             price = input("Введите цену: ")
+            file = open("array.txt" , 'a')
+            file.write(product + " : " + str(price) + "\n")
+            file.close()
             warehouse.append(product)
             warehouse.append(price)
             shop.append(warehouse)
         elif choice_3 == "Удалить" or choice_3 == "УДАЛИТЬ" or choice_3 == "удалить":
             delete = input("Введите продукт, который желаете удалить: ")
-            i = 0
             for array in shop:
-                i += 1
                 test = array[0]
-                price_delete = array[1]
                 if test == delete:
                     print(test, " = ",delete)
-                    array.clear
+                    array.pop(0)
+                    array.pop(0)
                     print("Товар ", delete, " удален из магазина")
                     print(shop)
-                # print(array)
-                # try:
-                #     if shop.index(delete) == 0:
-                #         print(shop.index(delete))
-                # except BaseException:
-                #     continue
-            # warehouse.append("лимон")
-            # print(shop.index(warehouse))
-
         else:
             break
 
