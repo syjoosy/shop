@@ -26,7 +26,8 @@ def change(products):
                 # shop.update(price)
                 
 def remove_product():
-    pass
+    product_name = input("Введите название товара: ")
+    user_products.popitem(product_name)
 
 
 def print_all_products(shop=shop):
@@ -47,11 +48,25 @@ products_count = int(input("Введите сколько товаров вы х
 products_section = input("Введите название раздела: ")
 user_products = {}
 
+# for i in range(products_count):
+#     product_name = input("Введите название товара: ")
+#     product_price = input("Введите цену товара: ")
+#     user_products.update({product_name: product_price})
+
+find = 0
+for i in shop:
+    if shop[i] == products_section:
+        find = 1
+if find == 0:
+    # shop.update(products_section)
+    pass
+
 for i in range(products_count):
     product_name = input("Введите название товара: ")
     product_price = input("Введите цену товара: ")
     user_products.update({product_name: product_price})
 
+remove_product()
 add_products_to_section(products_section, user_products)
 print(shop)
 
