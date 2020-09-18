@@ -11,7 +11,6 @@ def add_products(user_group, shop = shop, **products):
     elif user_group not in shop:
         shop.update({user_group:{}})
         shop[user_group].update(products)
-
     else:
         return "Ошибка"
 
@@ -24,10 +23,24 @@ def change(products):
             if product == products:
                 price = input("Введите новую цену для продукта {} ".format(product))
                 # shop.update(price)
+
+
+             
                 
 def remove_product():
     product_name = input("Введите название товара: ")
-    user_products.popitem(product_name)
+    find = 0
+    for key,value in shop.items():
+        print(key, " => ", value)
+        for key,value in value.items():
+            print("key: ", key, " value: ", value)
+            if product_name == key:
+                print(product_name, " найден")
+                find = 1
+                del value.items[[key]]
+                print(product_name, " удален")
+            if find == 0:
+                print("Продукт ", product_name, " не найден")
 
 
 def print_all_products(shop=shop):
@@ -35,7 +48,6 @@ def print_all_products(shop=shop):
         print("\nРаздел: " + group)
         for product, price in array.items():
             print(product + ' - ' + str(price))
-
 
 def add_products_to_section(section, products):
     if section in shop:
@@ -53,21 +65,21 @@ user_products = {}
 #     product_price = input("Введите цену товара: ")
 #     user_products.update({product_name: product_price})
 
-find = 0
-for i in shop:
-    if shop[i] == products_section:
-        find = 1
-if find == 0:
-    # shop.update(products_section)
-    pass
+# find = 0
+# for i in shop:
+#     if shop[i] == products_section:
+#         find = 1
+# if find == 0:
+#     # shop.update(products_section)
+#     pass
 
 for i in range(products_count):
     product_name = input("Введите название товара: ")
     product_price = input("Введите цену товара: ")
     user_products.update({product_name: product_price})
 
-remove_product()
 add_products_to_section(products_section, user_products)
+remove_product()
 print(shop)
 
 # while True:
